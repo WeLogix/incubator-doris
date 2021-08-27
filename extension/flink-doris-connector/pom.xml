@@ -10,8 +10,8 @@
 
     <properties>
         <scala.version>2.12</scala.version>
-        <flink.version>1.11.2</flink.version>
-        <libthrift.version>0.9.3</libthrift.version>
+        <flink.version>1.13.2</flink.version>
+        <libthrift.version>0.14.2</libthrift.version>
         <arrow.version>0.15.1</arrow.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
