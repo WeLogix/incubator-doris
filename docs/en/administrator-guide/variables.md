@@ -345,6 +345,10 @@ Translated with www.DeepL.com/Translator (free version)
 
     Not used.
     
+* `send_batch_parallelism`
+
+    Used to set the default parallelism for sending batch when execute InsertStmt operation, if the value for parallelism exceed `max_send_batch_parallelism_per_job` in BE config, then the coordinator BE will use the value of `max_send_batch_parallelism_per_job`.
+
 * `sql_mode`
 
     Used to specify SQL mode to accommodate certain SQL dialects. For the SQL mode, see [here](./sql-mode.md).
@@ -425,3 +429,13 @@ Translated with www.DeepL.com/Translator (free version)
 * `enable_fold_constant_by_be`
 
     Used to control the calculation method of constant folding. The default is `false`, that is, calculation is performed in `FE`; if it is set to `true`, it will be calculated by `BE` through `RPC` request.
+
+* `cpu_resource_limit`
+
+     Used to limit the resource overhead of a query. This is an experimental feature. The current implementation is to limit the number of scan threads for a query on a single node. The number of scan threads is limited, and the data returned from the bottom layer slows down, thereby limiting the overall computational resource overhead of the query. Assuming it is set to 2, a query can use up to 2 scan threads on a single node.
+
+     This parameter will override the effect of `parallel_fragment_exec_instance_num`. That is, assuming that `parallel_fragment_exec_instance_num` is set to 4, and this parameter is set to 2. Then 4 execution instances on a single node will share up to 2 scanning threads.
+
+     This parameter will be overridden by the `cpu_resource_limit` configuration in the user property.
+
+     The default is -1, which means no limit.
